@@ -54,16 +54,12 @@ class chessboard(object):
             return shift(merge(shift(line, d), d), d)
     
         prev = self._numpad.copy()
-        self._numpad = {chessboard.LEFT: list(map(lambda l: moveline(l, True),
-                                                  self._numpad)),
-                        chessboard.RIGHT: list(map(lambda l: moveline(l, False),
-                                                   self._numpad)),
-                        chessboard.UP: list(map(lambda l: list(l),
-                                                zip(*map(lambda l: moveline(l, True),
-                                                         zip(*self._numpad))))),
-                        chessboard.DOWN: list(map(lambda l: list(l),
-                                                  zip(*map(lambda l: moveline(l, False),
-                                                           zip(*self._numpad)))))}[direction]
+        self._numpad = {
+            chessboard.LEFT: lambda pad: [moveline(l, True) for l in pad],
+            chessboard.RIGHT: lambda pad: [moveline(l, False) for l in pad],
+            chessboard.UP: lambda pad: [list(l) for l in zip(*[moveline(l, True) for l in zip(*pad)])],
+            chessboard.DOWN: lambda pad: [list(l) for l in zip(*[moveline(l, False) for l in zip(*pad)])]
+        }[direction](self._numpad)
         if prev == self._numpad:
             raise ValueError
 
