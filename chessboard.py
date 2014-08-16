@@ -36,9 +36,9 @@ class chessboard(object):
         def moveline(line, d):
             def shift(l, d):
                 if d:
-                    return list(filter(lambda x: x != 0, l)) + [0] * l.count(0)
+                    return [x for x in l if x != 0] + [0] * l.count(0)
                 else:
-                    return [0] * l.count(0) + list(filter(lambda x: x != 0, l))
+                    return [0] * l.count(0) + [x for x in l if x != 0]
 
             def merge(l, d):
                 if d:
@@ -52,7 +52,7 @@ class chessboard(object):
                 return l
 
             return shift(merge(shift(line, d), d), d)
-    
+
         prev = self._numpad.copy()
         self._numpad = {
             chessboard.LEFT: lambda pad: [moveline(l, True) for l in pad],

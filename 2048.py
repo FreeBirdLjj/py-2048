@@ -12,14 +12,14 @@ def finalize():
 
 
 if __name__ == "__main__":
-    
+
     # Initialize
     stdscr = curses.initscr()
     curses.noecho()
     curses.curs_set(0)
     stdscr.keypad(1)
     curses.cbreak()
-   
+
     # Prepare
     itemw = ((chessboard.GOAL // 3) + 1) << 1
     winw = (itemw + 3) * chessboard.LENGTH + 3
@@ -45,7 +45,7 @@ if __name__ == "__main__":
         numpad = cb.getchessboard()
         for x in range(chessboard.LENGTH):
             for y in range(chessboard.LENGTH):
-                form[x][y].addstr(1, 1, "".join(map(lambda c: ' '+ c,
+                form[x][y].addstr(1, 1, "".join(map(lambda c: ' ' + c,
                                                     "%4d" % ((int(numpad[y][x] != 0)) * (0x1 << numpad[y][x])))))
                 form[x][y].refresh()
         stdscr.refresh()
