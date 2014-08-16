@@ -54,20 +54,6 @@ class chessboard(object):
             return shift(merge(shift(line, d), d), d)
     
         prev = self._numpad.copy()
-        #if direction == chessboard.LEFT:
-        #    self._numpad = list(map(lambda l: moveline(l, True),
-        #                            self._numpad))
-        #elif direction == chessboard.RIGHT:
-        #    self._numpad = list(map(lambda l: moveline(l, False),
-        #                            self._numpad))
-        #elif direction == chessboard.UP:
-        #    self._numpad = list(map(lambda l: list(l),
-        #                            zip(*map(lambda l: moveline(l, True),
-        #                                     zip(*self._numpad)))))
-        #elif direction == chessboard.DOWN:
-        #    self._numpad = list(map(lambda l: list(l),
-        #                            zip(*map(lambda l: moveline(l, False),
-        #                                     zip(*self._numpad)))))
         self._numpad = {chessboard.LEFT: list(map(lambda l: moveline(l, True),
                                                   self._numpad)),
                         chessboard.RIGHT: list(map(lambda l: moveline(l, False),
