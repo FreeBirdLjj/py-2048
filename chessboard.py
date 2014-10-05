@@ -14,6 +14,8 @@ class chessboard(object):
     LEFT = 2
     RIGHT = 3
 
+    RAND_TIMES = 6  # Avg times for 2^2 appearing
+
     def __init__(self):
         self._numpad = []
         for i in range(chessboard.LENGTH):
@@ -29,7 +31,7 @@ class chessboard(object):
         randposition = spaces[random.randint(0, len(spaces) - 1)]
         col = randposition % chessboard.LENGTH
         row = randposition // chessboard.LENGTH
-        randchess = 2 if random.randint(1, 6) == 6 else 1
+        randchess = 1 + int(random.randint(1, chessboard.RAND_TIMES) == 1)
         self._numpad[row][col] = randchess
 
     def move(self, direction):
